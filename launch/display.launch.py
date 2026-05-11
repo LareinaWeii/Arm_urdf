@@ -10,6 +10,12 @@ def generate_launch_description():
     pkg_path = get_package_share_directory(package_name)
     urdf_path = os.path.join(pkg_path, 'urdf', 'Arm_urdf.urdf')
 
+    rviz_config = os.path.join(
+            pkg_path,
+            'rviz',
+            'display.rviz'
+        )
+
     return LaunchDescription([
 
         Node(
@@ -29,5 +35,7 @@ def generate_launch_description():
         Node(
             package='rviz2',
             executable='rviz2',
+            arguments=['-d', rviz_config],
+            output='screen'
         )
     ])
